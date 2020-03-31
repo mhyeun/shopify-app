@@ -88,15 +88,15 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./pages/index.js":
-/*!************************!*\
-  !*** ./pages/index.js ***!
-  \************************/
+/***/ "./pages/annotated-layout.js":
+/*!***********************************!*\
+  !*** ./pages/annotated-layout.js ***!
+  \***********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -109,29 +109,95 @@ __webpack_require__.r(__webpack_exports__);
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
-const img = "https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg";
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-const Index = () => __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Page"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Layout"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["EmptyState"], {
-  heading: "Discount your products temporarily",
-  action: {
-    content: "Select products",
-    onAction: () => console.log("clicked")
-  },
-  image: img
-}, __jsx("p", null, "Select products to change their price temporarily."))));
 
-/* harmony default export */ __webpack_exports__["default"] = (Index);
+
+class AnnotatedLayout extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(...args) {
+    super(...args);
+
+    _defineProperty(this, "state", {
+      discount: "10%",
+      enabled: false
+    });
+
+    _defineProperty(this, "handleSubmit", () => {
+      this.setState({
+        discount: this.state.discount
+      });
+      console.log("submission", this.state);
+    });
+
+    _defineProperty(this, "handleChange", field => {
+      return value => this.setState({
+        [field]: value
+      });
+    });
+
+    _defineProperty(this, "handleToggle", () => {
+      this.setState(({
+        enabled
+      }) => {
+        return {
+          enabled: !enabled
+        };
+      });
+    });
+  }
+
+  render() {
+    const {
+      discount,
+      enabled
+    } = this.state;
+    const contentStatus = enabled ? "Disable" : "Enable";
+    const textStatus = enabled ? "enabled" : "disabled";
+    return __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Page"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Layout"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Layout"].AnnotatedSection, {
+      title: "Default discount",
+      description: "Add a product to Sample App, it will automatically be discounted."
+    }, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Card"], {
+      sectioned: true
+    }, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Form"], {
+      onSubmit: this.handleSubmit
+    }, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["FormLayout"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["TextField"], {
+      value: discount,
+      onChange: this.handleChange("discount"),
+      label: "Discount percentage",
+      type: "discount"
+    }), __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Stack"], {
+      distribution: "trailing"
+    }, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+      primary: true,
+      submit: true
+    }, "Save")))))), __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Layout"].AnnotatedSection, {
+      title: "Price updates",
+      description: "Temporarily disable all Sample App price updates"
+    }, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["SettingToggle"], {
+      action: {
+        content: contentStatus,
+        onAction: this.handleToggle
+      },
+      enabled: enabled
+    }, "This setting is", " ", __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["TextStyle"], {
+      variation: "strong"
+    }, textStatus), "."))));
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (AnnotatedLayout);
 
 /***/ }),
 
-/***/ 3:
-/*!******************************!*\
-  !*** multi ./pages/index.js ***!
-  \******************************/
+/***/ 4:
+/*!*****************************************!*\
+  !*** multi ./pages/annotated-layout.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Matthew Hyeun\shopify-tutorial\pages\index.js */"./pages/index.js");
+module.exports = __webpack_require__(/*! C:\Users\Matthew Hyeun\shopify-tutorial\pages\annotated-layout.js */"./pages/annotated-layout.js");
 
 
 /***/ }),
@@ -159,4 +225,4 @@ module.exports = require("react");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=annotated-layout.js.map
